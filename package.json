@@ -1,0 +1,50 @@
+{
+  "name": "meowtiverse-studio-vite",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@openzeppelin/contracts": "^4.7.0",
+    "@rainbow-me/rainbowkit": "^0.4.2",
+    "@remix-project/remixd": "^0.6.4",
+    "daisyui": "^2.24.0",
+    "ethers": "^5.0.0",
+    "firebase-tools": "^11.8.0",
+    "framer-motion": "^6.5.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0",
+    "react-router-dom": "6",
+    "swiper": "^8.3.2",
+    "wagmi": "^0.6.4"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.1",
+    "autoprefixer": "^10.4.8",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-next": "^12.1.6",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "postcss": "^8.4.14",
+    "postcss-nesting": "^10.1.10",
+    "prettier": "^2.7.1",
+    "sass": "^1.54.5",
+    "tailwindcss": "^3.1.7",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.7"
+  }
+}
