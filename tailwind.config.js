@@ -77,4 +77,16 @@ module.exports = {
     },
     require('daisyui'),
   ],
+  daisyui: {
+    themes: [
+      {
+        'meowtiverse': {
+          primary: '#01113c',
+          secondary: '#f0bc5e',
+          neutral: '#020E2E',
+          'base-100': '#f2f3f5',
+        },
+      },
+    ],
+  },
 };

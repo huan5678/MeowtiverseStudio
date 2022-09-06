@@ -9,7 +9,7 @@ import useWindowSize from '../helpers/windowResize';
 
 import catHero from '@/assets/images/cat_on_planet.svg';
 import bannerBottomCat from '@/assets/images/banner_bottom_cat.png';
-import NewsLetterBanner from '../assets/images/newsletter.png';
+import NewsLetterBanner from '@/assets/images/newsletter.png';
 
 import {ConnectWallet} from '../components/ConnectWallet';
 import MintNFT from '../components/MintNFT';
@@ -21,7 +21,7 @@ const {collections, stepData} = data;
 const Home = () => {
   const {isConnected} = useAccount();
   return (
-    <main className="">
+    <main className="bg-white">
       <HeroSection />
       <div className="flex justify-center py-4">
         <ConnectWallet />
@@ -55,7 +55,7 @@ const HeroSection = () => {
   }, [size.width]);
 
   return (
-    <section className="relative bg-primary z-0 h-screen lg:h-[90vh] before:absolute before:bg-[url('@/assets/images/mv_snow_leftTop.png')] before:top-0 before:left-0 before:w-full before:h-full before:bg-no-repeat before:bg-scroll before:bg-[length:193px_108px] lg:before:bg-[length:440px_247px] before:-z-10 after:absolute after:top-full after:bg-no-repeat after:bg-[url(@/assets/images/underWave.png)] after:bg-[length:100%_10%] md:after:bg-[length:100%_20%] lg:after:bg-[length:100%_10rem] after:w-full after:h-full after:-translate-y-[8vh] md:after:-translate-y-[17vh] lg:after:-translate-y-[20vh] after:-z-10">
+    <section className="relative bg-gradient-to-b from-primary-500 via-primary-500 to-white z-0 h-screen lg:h-[90vh] before:absolute before:bg-[url('@/assets/images/mv_snow_leftTop.png')] before:top-0 before:left-0 before:w-full before:h-full before:bg-no-repeat before:bg-scroll before:bg-[length:193px_108px] lg:before:bg-[length:440px_247px] before:-z-10 after:absolute after:bg-no-repeat after:bg-[url(@/assets/images/underWave.png)] after:bg-[length:100%_10%] md:after:bg-[length:100%_20%] lg:after:bg-[length:100%_10rem] after:w-full after:h-full after:hidden after:-translate-y-[8vh] md:after:block md:after:-translate-y-[17vh] lg:after:-translate-y-[20vh] after:-z-10">
       <span className="w-full before:h-full before:absolute before:bg-[url('@/assets/images/mv_snow_left.png')] before:bg-no-repeat before:top-0 before:left-0 before:w-full before:bg-[length:11rem_36rem] md:before:bg-contain before:bg-fixed before:bg-left-top before:-z-10 after:bg-[url('@/assets/images/mv_snow_right.png')] after:bg-fixed after:absolute after:w-full after:h-full after:bg-right-top after:bg-[length:12rem_42rem] md:after:bg-contain after:bg-no-repeat after:-z-10"></span>
       <div className="container lg:relative lg:w-full lg:h-full">
         <div className="text-white flex flex-col justify-center items-center lg:h-full lg:flex-row lg:justify-between lg:items-center">
@@ -82,7 +82,7 @@ const HeroSection = () => {
             </p>
             <Link
               to="/"
-              className="relative bg-secondary text-primary border border-primary-400 py-4 px-6 lg:py-2 lg:px-12 transition-all duration-300 mb-16 hover:text-secondary hover:bg-primary-400 hover:border-primary-500"
+              className="relative btn btn-secondary w-full text-primary border border-primary-50 transition-all duration-300 mb-16 lg:w-2/3 hover:text-secondary hover:bg-primary-400 hover:border-primary-500"
             >
               <span>JOIN US</span>
               <div className="absolute top-0 -translate-y-full left-full -translate-x-full overflow-hidden w-full flex">

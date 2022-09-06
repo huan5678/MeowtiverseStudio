@@ -1,5 +1,3 @@
-import {StaticImageData} from 'next/image';
-
 export interface listData {
   data: {
     title: string;
@@ -20,7 +18,7 @@ export interface collectionData {
   data: {
     title: string;
     content: string;
-    img: StaticImageData;
+    img: string;
     path: string;
   }[];
 }
