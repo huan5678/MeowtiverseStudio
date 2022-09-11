@@ -6,7 +6,7 @@ import IconComponent from './IconComponent';
 import {Link, useLocation} from 'react-router-dom';
 import {navData} from '..';
 
-const HeaderComponent = ({ data }: navData) =>
+const HeaderComponent = () =>
 {
   const [ menuIsOpen, setMenuIsOpen ] = useState(false);
   const [ logoWidth, setLogoWidth ] = useState<string | number>('100%');
@@ -15,6 +15,20 @@ const HeaderComponent = ({ data }: navData) =>
   const [ scrollY, setScrollY ] = useState(0);
   const size = useWindowSize();
   const location = useLocation();
+  const data: navData['data'] = [
+    {
+      name: 'Collections',
+      path: 'collection',
+    },
+    {
+      name: 'Wallet',
+      path: 'wallet',
+    },
+    {
+      name: 'User',
+      path: 'user',
+    },
+  ];
   useEffect(() =>
   {
     window.addEventListener('scroll', () =>

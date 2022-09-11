@@ -1,13 +1,17 @@
 import {Link} from 'react-router-dom';
 import useStore from '../context';
+import { useEffect } from 'react';
 import { collectionData } from '..';
-import {useEffect} from 'react';
+interface State {
+  collectionsData: collectionData[ 'data' ];
+  getCollection: () => void;
+}
 const Collection = () =>
 {
   const {
     collectionsData,
     getCollection,
-  } = useStore((state: any) => ({
+  } = useStore<State>((state: any) => ({
     collectionsData: state.collectionsData,
     getCollection: state.getCollection,
   }));

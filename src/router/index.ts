@@ -10,7 +10,7 @@ const routes = [
     exact: true,
   },
   {
-    path: '/collection',
+    path: 'collection',
     component: Collection,
     children: [
       {
@@ -20,7 +20,7 @@ const routes = [
     ]
   },
   {
-    path: '/wallet',
+    path: 'wallet',
     component: Wallet,
   },
   {

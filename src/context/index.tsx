@@ -1,56 +1,34 @@
 import create from 'zustand';
 import { db } from '../database/useFirebase';
-import {collection, DocumentData, onSnapshot} from 'firebase/firestore';
+import { collection, DocumentData, onSnapshot } from 'firebase/firestore';
+import { collectionData, navData } from '..';
+
+interface State {
+  collectionsData: collectionData['data'];
+  stepData: navData[ 'data' ];
+  getCollection: () => void;
+  getStep: () => void;
+}
 
 const useStore = create((set) => ({
   collectionsData: [],
   stepData: [],
-  headerList: [],
-  footerList: [],
-  getCollection: () =>
-  {
-    onSnapshot(collection(db, 'collections'), (querySnapshot) =>
-    {
+  getCollection: () => {
+    onSnapshot(collection(db, 'collections'), (querySnapshot) => {
       const data: DocumentData[] = [];
-      querySnapshot.forEach((doc) =>
-      {
+      querySnapshot.forEach((doc) => {
         data.push(doc.data());
       });
-      set({ collectionsData: data });
+      set({collectionsData: data});
     });
   },
-  getStep: () =>
-  {
+  getStep: () => {
     onSnapshot(collection(db, 'stepData'), (querySnapshot) => {
       const data: DocumentData[] = [];
       querySnapshot.forEach((doc) => {
         data.push(doc.data());
       });
       set({stepData: data});
-    });
-  },
-  getHeader: () =>
-  {
-    onSnapshot(collection(db, 'headerList'), (querySnapshot) =>
-    {
-      const data: DocumentData[] = [];
-      querySnapshot.forEach((doc) =>
-      {
-        data.push(doc.data());
-      });
-      set({ headerList: data });
-    });
-  },
-  getFooter: () =>
-  {
-    onSnapshot(collection(db, 'footerList'), (querySnapshot) =>
-    {
-      const data: DocumentData[] = [];
-      querySnapshot.forEach((doc) =>
-      {
-        data.push(doc.data());
-      });
-      set({ footerList: data });
     });
   },
 }));

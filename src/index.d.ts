@@ -16,8 +16,10 @@ export interface navData {
 export interface collectionData {
   [ x: string ]: any;
   data: {
+    img: string;
     title: string;
     content: string;
     path: string;
+    description: string;
   }[];
 }

@@ -12,14 +12,18 @@ import bannerBottomCat from '@/assets/images/banner_bottom_cat.png';
 import NewsLetterBanner from '@/assets/images/newsletter.png';
 
 import {ConnectWallet} from '../components/ConnectWallet';
-import MintNFT from '../components/MintNFT';
-import 'swiper/css';
-import {collectionData, listData} from '..';
-import useStore from '../context';
 
+import 'swiper/css';
+import useStore from '../context';
+import {collectionData, listData} from '..';
+interface State {
+  collectionsData: collectionData['data'];
+  getCollection: () => void;
+  stepData: listData[ 'data' ];
+  getStep: () => void;
+}
 const Home = () => {
-  const { isConnected } = useAccount();
-  const {collectionsData, stepData, getCollection, getStep} = useStore((state: any) => ({
+  const {collectionsData, stepData, getCollection, getStep} = useStore<State>((state: any) => ({
     collectionsData: state.collectionsData,
     getCollection: state.getCollection,
     stepData: state.stepData,
@@ -35,10 +39,6 @@ const Home = () => {
       <div className="flex justify-center py-4">
         <ConnectWallet />
       </div>
-      <p className="text-center text-2xl">
-        每個人都不得不面對這些問題。在面對這種問題時，務必詳細考慮陰陽道的各種可能。冰心講過一段耐人尋思的話，修養的花兒在寂靜中開過去了，成功的果子便要在光明里結實。這不禁令我重新仔細的思考。既然，這必定是個前衛大膽的想法。我們要學會站在別人的角度思考。生活中，若陰陽道出現了，我們就不得不考慮它出現了的事實。
-      </p>
-      {isConnected && <MintNFT />}
       <CollectionSection data={collectionsData} />
       <StepSection data={stepData} />
       <NewsletterSection />

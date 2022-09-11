@@ -3,7 +3,26 @@ import LogoIcon from './LogoIcon';
 import {navData} from '..';
 import {Link} from 'react-router-dom';
 
-const FooterComponent = ({ data }:navData) => {
+const FooterComponent = () =>
+{
+  const data: navData[ 'data' ] = [
+    {
+      name: 'Discord',
+      path: 'discord',
+    },
+    {
+      name: 'Facebook',
+      path: 'facebook',
+    },
+    {
+      name: 'Twitter',
+      path: 'twitter',
+    },
+    {
+      name: 'Behance',
+      path: 'behance',
+    },
+  ];
   return (
     <footer className="bg-primary text-center text-white pt-4 pb-8 border-t border-primary-50">
       <div className="container">
