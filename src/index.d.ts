@@ -2,7 +2,7 @@ export interface listData {
   data: {
     title: string;
     content: string;
-    icon: string;
+    index: number;
   }[];
 }
 
@@ -10,15 +10,14 @@ export interface navData {
   data: {
     name: string;
     path: string;
-    icon: string;
   }[];
 }
 
 export interface collectionData {
+  [ x: string ]: any;
   data: {
     title: string;
     content: string;
-    img: string;
     path: string;
   }[];
 }

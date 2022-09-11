@@ -7,25 +7,26 @@ import {ImBehance2} from 'react-icons/im';
 function IconComponent(name: string)
 {
   switch (name) {
-    case 'BiCollection':
+    case 'STEP 1':
       return <BiCollection />;
-    case 'BiWallet':
+    case 'STEP 2':
+    case 'Wallet':
       return <BiWallet />;
-    case 'BiDollarCircle':
+    case 'STEP 3':
       return <BiDollarCircle />;
-    case 'BiLayer':
-      return <BiLayer />;
-    case 'GiSailboat':
+    case 'STEP 4':
       return <GiSailboat />;
-    case 'HiUserCircle':
+    case 'Collections':
+      return <BiLayer />;
+    case 'User':
       return <HiUserCircle />;
-    case 'BsDiscord':
+    case 'Discord':
       return <BsDiscord />;
-    case 'BsFacebook':
+    case 'Facebook':
       return <BsFacebook />;
-    case 'BsTwitter':
+    case 'Twitter':
       return <BsTwitter />;
-    case 'ImBehance2':
+    case 'Behance':
       return <ImBehance2 />;
   }
   return ;

@@ -14,12 +14,21 @@ import NewsLetterBanner from '@/assets/images/newsletter.png';
 import {ConnectWallet} from '../components/ConnectWallet';
 import MintNFT from '../components/MintNFT';
 import 'swiper/css';
-import {data} from '../fakeData';
 import {collectionData, listData} from '..';
-const {collections, stepData} = data;
+import useStore from '../context';
 
 const Home = () => {
-  const {isConnected} = useAccount();
+  const { isConnected } = useAccount();
+  const {collectionsData, stepData, getCollection, getStep} = useStore((state: any) => ({
+    collectionsData: state.collectionsData,
+    getCollection: state.getCollection,
+    stepData: state.stepData,
+    getStep: state.getStep,
+  }));
+  useEffect(() => {
+    getCollection();
+    getStep();
+  }, []);
   return (
     <main className="bg-white">
       <HeroSection />
@@ -30,7 +39,7 @@ const Home = () => {
         每個人都不得不面對這些問題。在面對這種問題時，務必詳細考慮陰陽道的各種可能。冰心講過一段耐人尋思的話，修養的花兒在寂靜中開過去了，成功的果子便要在光明里結實。這不禁令我重新仔細的思考。既然，這必定是個前衛大膽的想法。我們要學會站在別人的角度思考。生活中，若陰陽道出現了，我們就不得不考慮它出現了的事實。
       </p>
       {isConnected && <MintNFT />}
-      <CollectionSection data={collections} />
+      <CollectionSection data={collectionsData} />
       <StepSection data={stepData} />
       <NewsletterSection />
     </main>
@@ -148,12 +157,12 @@ const StepSection = ({data}: listData) => {
           modules={[Autoplay]}
           className="h-full"
         >
-          {data.map((item) => (
+          {data?.sort((a, b)=>a.index - b.index).map((item) => (
             <SwiperSlide style={swiperSlide} key={item.title}>
               <div className="border rounded p-6 flex flex-col gap-4 h-full">
                 <div className="text-4xl grid place-content-center p-4">
                   <span className="rounded-full bg-primary-400 p-6">
-                    {IconComponent(item.icon)}
+                    {IconComponent(item.title)}
                   </span>
                 </div>
                 <h3 className="text-center text-2xl">{item.title}</h3>
@@ -185,10 +194,11 @@ const NewsletterSection = () => {
   return (
     <section className="py-10 container">
       <div className="flex flex-col md:flex-row justify-between gap-8">
-        <img src={NewsLetterBanner} alt="訂閱電子報" width={imgWidth} height={imgHeight} />
+        <img src={NewsLetterBanner} alt="訂閱電子報" className="h-48 object-cover md:w-1/2 md:h-72" />
         <form action="" className="flex flex-col gap-6 justify-center p-4 w-full">
-          <h2 className="text-2xl font-bold lg:mx-auto flex flex-col md:flex-row gap-4">
-            不要錯過第一手消息<span>訂閱訂起來</span>
+          <h2 className="flex flex-col text-center text-2xl font-bold lg:flex-row lg:justify-center lg:gap-4 lg:text-left">
+            不要錯過第一手消息
+            <span>訂閱訂起來</span>
           </h2>
           <label htmlFor="subscribeEmail" className="text-center text-xl">
             訂閱電子報 獲得最新消息
@@ -224,16 +234,17 @@ const CollectionSection = ({data}: collectionData) => {
       return setImgHeight(480);
     }
     return () => setImgHeight(540);
-  }, [size.width]);
+  }, [ size.width ]);
+
   return (
     <section className="container flex flex-col md:flex-row md:items-stretch lg:flex-col gap-12 py-10">
-      {data.map((item) => (
+      {data?.map((item) => (
         <div
           className="relative rounded flex flex-col lg:flex-row lg:gap-8 border border-primary-300 p-6 before:absolute before:inset-0 before:-z-10 before:shadow-[6px_6px_0px_#01113c5d] before:rounded"
           key={item.title}
         >
           <img
-            src={item.img}
+            src={`src/assets/images/${item.img}.png`}
             height={imgHeight}
             alt={item.title}
             className="lg:w-96 lg:object-cover"

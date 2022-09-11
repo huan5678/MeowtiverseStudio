@@ -11,10 +11,24 @@ const HeaderComponent = ({ data }: navData) =>
   const [ menuIsOpen, setMenuIsOpen ] = useState(false);
   const [ logoWidth, setLogoWidth ] = useState<string | number>('100%');
   const [ logoHeight, setLogoHeight ] = useState<string | number>('100%');
+  const [ isScrollDown, setIsScrollDown ] = useState(false);
+  const [ scrollY, setScrollY ] = useState(0);
   const size = useWindowSize();
   const location = useLocation();
   useEffect(() =>
   {
+    window.addEventListener('scroll', () =>
+    {
+      setScrollY(window.scrollY);
+      if (window.scrollY > scrollY) {
+        setIsScrollDown(true);
+      } else {
+        setIsScrollDown(false);
+      }
+    });
+  }, [ scrollY ]);
+  useEffect(() =>
+    {
     if (size.width >= 992) {
       return setLogoWidth(64), setLogoHeight(64);
     }
@@ -25,18 +39,29 @@ const HeaderComponent = ({ data }: navData) =>
   }, [ size.width ]);
 
   return (
-    <header className={`${location.pathname === '/' ? 'lg:absolute' : 'shadow'} relative bg-primary-100 lg:bg-primary lg:bg-opacity-0 lg:w-full lg:top-0 lg:left-0 lg:z-20`}>
+    <header
+      className={`${
+        location.pathname === '/'
+          ? `bg-opacity-30 ${
+              isScrollDown ? '-translate-y-full' : 'translate-y-0'
+            } lg:fixed lg:w-full lg:top-0 lg:left-0 lg:z-[999]`
+          : 'bg-opacity-100 border-b border-b-primary-50'
+      } bg-primary-900 fixed w-full left-0 top-0 transition duration-300`}
+    >
       <div className="md:container p-0">
-        <nav className="flex justify-between items-center relative p-4 md:px-0 lg:py-6">
+        <nav className="flex justify-between items-center relative p-2 md:px-0 lg:py-2">
           <h2 className="font-bold text-center group transition duration-300">
-            <Link to="/" className="text-center p-2 flex gap-2 lg:gap-4 items-center justify-center lg:text-primary-600 lg:group-hover:drop-shadow-lg lg:group-hover:drop-shadow-primary-100 lg:group-hover:text-primary-900">
+            <Link
+              to="/"
+              className="text-center p-2 flex gap-2 lg:gap-4 items-center justify-center lg:text-primary-600 lg:group-hover:drop-shadow-lg lg:group-hover:drop-shadow-primary-100 lg:group-hover:text-primary-900"
+            >
               <LogoIcon
                 data={{
                   logoWidth: logoWidth,
                   logoHeight: logoHeight,
                 }}
               />
-              <span className="hidden lg:block text-primary-200 lg:group-hover:text-primary-400 text-xl">
+              <span className="hidden text-primary-50 lg:block lg:group-hover:text-primary-400 text-xl">
                 Meowtiverse
               </span>
             </Link>
@@ -62,13 +87,16 @@ const HeaderComponent = ({ data }: navData) =>
             }
           >
             <div className="flex flex-col justify-between lg:items-center h-full lg:flex-row lg:justify-end lg:gap-8">
-              {data.map((item) => (
-                <Link to={item.path} key={item.name} className="grid place-content-center gap-2 py-2 w-full h-full text-4xl text-center font-bold text-primary-100 hover:text-primary-200 hover:underline hover:bg-primary-400 lg:text-xl lg:w-auto lg:hover:bg-transparent lg:hover:text-primary-400"
-                  >
-                    <span className="flex gap-2 items-center">
-                      <>{IconComponent(item.icon)}</>
-                      {item.name}
-                    </span>
+              {data?.map((item) => (
+                <Link
+                  to={item.path}
+                  key={item.name}
+                  className="grid place-content-center gap-2 py-2 w-full h-full text-4xl text-center font-bold text-primary-100 hover:text-primary-200 hover:underline hover:bg-primary-400 lg:text-xl lg:w-auto lg:hover:bg-transparent lg:hover:text-primary-400"
+                >
+                  <span className="flex gap-2 items-center">
+                    <>{IconComponent(item.name)}</>
+                    {item.name}
+                  </span>
                 </Link>
               ))}
             </div>

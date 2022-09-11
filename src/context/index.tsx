@@ -1,14 +1,58 @@
-import {atom} from 'jotai';
-import useFirebase from '../database/useFirebase';
-import {ref, child, get} from 'firebase/database';
+import create from 'zustand';
+import { db } from '../database/useFirebase';
+import {collection, DocumentData, onSnapshot} from 'firebase/firestore';
 
-const atomStatus = () =>
-{
-  const { db } = useFirebase();
-  const dbRef = ref(db);
-  const collections = atom(get(child(dbRef, 'collections')).then((snapshot) => snapshot.val()));
-  return collections;
-};
+const useStore = create((set) => ({
+  collectionsData: [],
+  stepData: [],
+  headerList: [],
+  footerList: [],
+  getCollection: () =>
+  {
+    onSnapshot(collection(db, 'collections'), (querySnapshot) =>
+    {
+      const data: DocumentData[] = [];
+      querySnapshot.forEach((doc) =>
+      {
+        data.push(doc.data());
+      });
+      set({ collectionsData: data });
+    });
+  },
+  getStep: () =>
+  {
+    onSnapshot(collection(db, 'stepData'), (querySnapshot) => {
+      const data: DocumentData[] = [];
+      querySnapshot.forEach((doc) => {
+        data.push(doc.data());
+      });
+      set({stepData: data});
+    });
+  },
+  getHeader: () =>
+  {
+    onSnapshot(collection(db, 'headerList'), (querySnapshot) =>
+    {
+      const data: DocumentData[] = [];
+      querySnapshot.forEach((doc) =>
+      {
+        data.push(doc.data());
+      });
+      set({ headerList: data });
+    });
+  },
+  getFooter: () =>
+  {
+    onSnapshot(collection(db, 'footerList'), (querySnapshot) =>
+    {
+      const data: DocumentData[] = [];
+      querySnapshot.forEach((doc) =>
+      {
+        data.push(doc.data());
+      });
+      set({ footerList: data });
+    });
+  },
+}));
 
-export default atomStatus;
-export const collections = atomStatus();
+export default useStore;

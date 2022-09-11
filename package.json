@@ -17,13 +17,13 @@
     "ethers": "^5.0.0",
     "firebase": "^9.9.4",
     "framer-motion": "^6.5.1",
-    "jotai": "^1.8.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-router-dom": "6",
     "swiper": "^8.3.2",
-    "wagmi": "^0.6.4"
+    "wagmi": "^0.6.4",
+    "zustand": "^4.1.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",

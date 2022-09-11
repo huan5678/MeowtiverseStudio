@@ -1,37 +1,27 @@
 import {Link} from 'react-router-dom';
-import { useAtom, useSetAtom } from 'jotai';
-import { collections } from '../context';
+import useStore from '../context';
 import { collectionData } from '..';
-
+import {useEffect} from 'react';
 const Collection = () =>
 {
-  // const [ collections, setCollections ] = useState<collectionData>();
-  // const [ collectionsData, setCollectionsData ] = useAtom(collections);
-  const collectionsData = useAtom(collections);
-  console.log(collectionsData);
+  const {
+    collectionsData,
+    getCollection,
+  } = useStore((state: any) => ({
+    collectionsData: state.collectionsData,
+    getCollection: state.getCollection,
+  }));
+  useEffect(() =>
+  {
+    getCollection();
+  }, []);
 
-  // useEffect(() =>
-  // {
-  //   const dbRef = ref(db);
-  //   get(child(dbRef, 'collections')).then((snapshot) =>
-  //   {
-  //     if (snapshot.exists())
-  //     {
-  //       setCollections(snapshot.val());
-  //     }
-  //     else
-  //     {
-  //       console.log('No data available');
-  //     }
-  //   }).catch((error) =>
-  //   {
-  //     console.error(error);
-  //   });
-  // }, []);
   return (
     <main className="bg-gradient-to-b from-primary-900 to-primary-500">
-      <div className="container">
-        <h1 className="text-center text-6xl text-primary-50 py-4">Collection</h1>
+      <div className="container pt-24 md:pt-48">
+        <h1 className="text-center text-2xl lg:text-6xl text-primary-50 py-4 lg:py-8">
+          Collection
+        </h1>
         <ul className="flex flex-col gap-8">
           {collectionsData?.map((item, index) => (
             <li className="" key={index}>
@@ -46,7 +36,7 @@ const Collection = () =>
                     {item.title}
                   </h2>
                   <p className="text-primary-400 mb-auto">{item.description}</p>
-                  <Link to={`/collection/`} className="btn text-primary-50 rounded-none text-lg">
+                  <Link to={`${item.path}`} className="btn text-primary-50 rounded-none text-lg">
                     就決定是你了
                   </Link>
                 </div>
