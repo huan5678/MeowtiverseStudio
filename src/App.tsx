@@ -8,8 +8,8 @@ function App()
         <Route path="/" element={<Layout />}>
           {routes.map((route) => (
             <Route key={route.path} index={route.exact} path={route.path} element={<route.component />}>
-              {route.children?.map((child) => (
-                <Route key={child.path} path={child.path} element={<child.component />} />
+              {route.children?.map((child, index) => (
+                <Route key={index} index={child.exact} path={child.path} element={<child.component />} />
               ))}
             </Route>
           ))}

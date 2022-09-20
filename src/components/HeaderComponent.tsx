@@ -58,9 +58,9 @@ const HeaderComponent = () =>
         location.pathname === '/'
           ? `bg-opacity-30 ${
               isScrollDown ? '-translate-y-full' : 'translate-y-0'
-            } lg:fixed lg:w-full lg:top-0 lg:left-0 lg:z-[999]`
+            } lg:fixed lg:w-full lg:top-0 lg:left-0`
           : 'bg-opacity-100 border-b border-b-primary-50'
-      } bg-primary-900 fixed w-full left-0 top-0 transition duration-300`}
+      } z-[99999] bg-primary-900 fixed w-full left-0 top-0 transition duration-300`}
     >
       <div className="md:container p-0">
         <nav className="flex justify-between items-center relative p-2 md:px-0 lg:py-2">

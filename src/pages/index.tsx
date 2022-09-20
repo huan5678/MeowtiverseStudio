@@ -64,9 +64,9 @@ const HeroSection = () => {
   }, [size.width]);
 
   return (
-    <section className="relative bg-gradient-to-b from-primary-500 via-primary-500 to-white z-0 h-screen lg:h-[90vh] before:absolute before:bg-[url('@/assets/images/mv_snow_leftTop.png')] before:top-0 before:left-0 before:w-full before:h-full before:bg-no-repeat before:bg-scroll before:bg-[length:193px_108px] lg:before:bg-[length:440px_247px] before:-z-10 after:absolute after:bg-no-repeat after:bg-[url(@/assets/images/underWave.png)] after:bg-[length:100%_10%] md:after:bg-[length:100%_20%] lg:after:bg-[length:100%_10rem] after:w-full after:h-full after:hidden after:-translate-y-[8vh] md:after:block md:after:-translate-y-[17vh] lg:after:-translate-y-[20vh] after:-z-10">
+    <section className="relative bg-gradient-to-b from-primary-500 via-primary-500 to-white z-0 h-screen lg:h-[90vh] before:absolute before:bg-[url('@/assets/images/mv_snow_leftTop.png')] before:top-0 before:left-0 before:w-full before:h-full before:bg-no-repeat before:bg-scroll before:bg-[length:193px_108px] lg:before:bg-[length:440px_247px] before:-z-10">
       <span className="w-full before:h-full before:absolute before:bg-[url('@/assets/images/mv_snow_left.png')] before:bg-no-repeat before:top-0 before:left-0 before:w-full before:bg-[length:11rem_36rem] md:before:bg-contain before:bg-fixed before:bg-left-top before:-z-10 after:bg-[url('@/assets/images/mv_snow_right.png')] after:bg-fixed after:absolute after:w-full after:h-full after:bg-right-top after:bg-[length:12rem_42rem] md:after:bg-contain after:bg-no-repeat after:-z-10"></span>
-      <div className="container lg:relative lg:w-full lg:h-full">
+      <div className="container lg:relative lg:w-full lg:h-full pt-24">
         <div className="text-white flex flex-col justify-center items-center lg:h-full lg:flex-row lg:justify-between lg:items-center">
           <img
             className="lg:absolute lg:left-full lg:top-1/2 lg:-translate-x-full lg:-translate-y-1/2"
@@ -253,7 +253,7 @@ const CollectionSection = ({data}: collectionData) => {
             <h2 className="text-2xl md:text-3xl font-bold lg:text-4xl">{item.title}</h2>
             <p className="lg:text-lg lg:row-span-2 mb-auto">{item.content}</p>
             <Link
-              to={item.path}
+              to={`collection/${item.path}`}
               className="ring-1 text-center ring-primary block py-3 transition duration-300 lg:text-xl hover:text-primary-50 hover:bg-primary"
             >
               發現更多

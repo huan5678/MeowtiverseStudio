@@ -2,6 +2,7 @@ import Home from '../pages/index';
 import Collection from '../pages/collection';
 import Wallet from '../pages/wallet';
 import CollectionDetail from '../pages/collectionDetail';
+import CollectionList from '../components/CollectionList';
 
 const routes = [
   {
@@ -13,6 +14,10 @@ const routes = [
     path: 'collection',
     component: Collection,
     children: [
+      {
+        component: CollectionList,
+        exact: true,
+      },
       {
         path: ':path',
         component: CollectionDetail,

@@ -2,7 +2,7 @@ import {useAccount} from 'wagmi';
 
 import MintNFT from '../components/MintNFT';
 
-export default function CollectionDetail() {
+const CollectionDetail = () => {
   const {isConnected} = useAccount();
   return (
     <div>
@@ -11,3 +11,5 @@ export default function CollectionDetail() {
     </div>
   );
 }
+
+export default CollectionDetail;
